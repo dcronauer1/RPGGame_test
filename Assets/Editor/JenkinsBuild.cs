@@ -49,11 +49,21 @@ public class JenkinsBuild
     }
     public static void BuildPS5()
     {
+        // Path to the PS5 player settings asset file
+        string ps5PlayerSettingsPath = "ProjectSettings/PS5Settings.asset";
+
+        // Load the PS5 player settings asset
+        PS5PlayerSettings ps5PlayerSettings = AssetDatabase.LoadAssetAtPath<PS5Settings>(ps5PlayerSettingsPath);
+
         // Set build subtarget to Package
-        EditorUserBuildSettingsPS5.buildSubtarget = PS5BuildSubtarget.Package;
+        ps5PlayerSettings.buildSubtarget = PS5BuildSubtarget.Package;
 
         // Set compression format to Kraken
-        EditorUserBuildSettingsPS5.compressionFormat = PS5CompressionFormat.Kraken;
+        ps5PlayerSettings.compressionFormat = PS5CompressionFormat.Kraken;
+
+        // Save the modified PS5 player settings asset
+        EditorUtility.SetDirty(ps5PlayerSettings);
+        AssetDatabase.SaveAssets();
 
         var args = FindArgs();
 
