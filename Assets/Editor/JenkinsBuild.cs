@@ -51,7 +51,7 @@ public class JenkinsBuild
         var args = FindArgs();
 
         string fullPathAndName = args.targetDir + args.appName;
-        BuildProject(EnabledScenes, fullPathAndName, BuildTargetGroup.PS5, BuildTarget.PS5, BuildOptions.None);
+        BuildProject(EnabledScenes, fullPathAndName, BuildTargetGroup.PS5, BuildTarget.PS5, BuildOptions.None, BuildSubtarget.Package);
     }
 
     private static Args FindArgs()
@@ -110,7 +110,7 @@ public class JenkinsBuild
     // ------------------------------------------------------------------------
     // e.g. BuildTargetGroup.Standalone, BuildTarget.StandaloneOSX
     // ------------------------------------------------------------------------
-    private static void BuildProject(string[] scenes, string targetDir, BuildTargetGroup buildTargetGroup, BuildTarget buildTarget, BuildOptions buildOptions)
+    private static void BuildProject(string[] scenes, string targetDir, BuildTargetGroup buildTargetGroup, BuildTarget buildTarget, BuildOptions buildOptions, BuildSubtarget buildSubtarget)
     {
         System.Console.WriteLine("[JenkinsBuild] Building:" + targetDir + " buildTargetGroup:" + buildTargetGroup.ToString() + " buildTarget:" + buildTarget.ToString());
 
@@ -127,7 +127,7 @@ public class JenkinsBuild
         }
 
         // https://docs.unity3d.com/ScriptReference/BuildPipeline.BuildPlayer.html
-        BuildReport buildReport = BuildPipeline.BuildPlayer(scenes, targetDir, buildTarget, buildOptions);
+        BuildReport buildReport = BuildPipeline.BuildPlayer(scenes, targetDir, buildTarget, buildOptions, buildSubtarget);
         BuildSummary buildSummary = buildReport.summary;
         if (buildSummary.result == BuildResult.Succeeded)
         {
