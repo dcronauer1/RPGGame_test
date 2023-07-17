@@ -53,8 +53,7 @@ public class JenkinsBuild
         var args = FindArgs();
 
         string fullPathAndName = args.targetDir + args.appName;
-        BuildProject(EnabledScenes, fullPathAndName, BuildTargetGroup.PS5, BuildTarget.PS5, BuildOptions.None);
-                UnityEditor.PS5.PlayerSettings.buildSubtarget = UnityEditor.PS5.PS5BuildSubtarget.Package;
+        BuildProject(EnabledScenes, fullPathAndName, BuildTargetGroup.PS5, BuildTarget.PS5, BuildOptions.Package);
 
     }
 
