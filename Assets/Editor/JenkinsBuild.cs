@@ -50,13 +50,12 @@ public class JenkinsBuild
     public static void BuildPS5()
     {
         // Set build subtarget to Package
-        PS5BuildSubtarget buildSubtarget = PS5BuildSubtarget.Package;
-        PlayerSettings.PS5.buildSubtarget = buildSubtarget;
+        UnityEditor.PS5.PS5PlayerSettings.buildSubtarget = UnityEditor.PS5.PS5BuildSubtarget.Package;
 
         // Set compression format to Kraken
-        PS5CompressionFormat compressionFormat = PS5CompressionFormat.Kraken;
-        PlayerSettings.PS5.compressionFormat = compressionFormat;
-        
+        UnityEditor.PS5.PS5PlayerSettings.compressionFormat = UnityEditor.PS5.PS5CompressionFormat.Kraken;
+
+
         var args = FindArgs();
 
         string fullPathAndName = args.targetDir + args.appName;
