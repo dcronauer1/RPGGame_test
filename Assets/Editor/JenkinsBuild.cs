@@ -46,7 +46,7 @@ public class JenkinsBuild
         string fullPathAndName = args.targetDir + args.appName;
         BuildProject(EnabledScenes, fullPathAndName, BuildTargetGroup.Standalone, BuildTarget.StandaloneLinux64, BuildOptions.None);
     }
-    public static void BuildPs5()
+    public static void BuildPS5()
     {
         var args = FindArgs();
 
