@@ -6,6 +6,7 @@ using UnityEditor;
 using System.Collections.Generic;
 using UnityEditor.Build.Reporting;
 using UnityEditor.PS5;
+using System.IO;
 
 // ------------------------------------------------------------------------
 // https://docs.unity3d.com/Manual/CommandLineArguments.html
