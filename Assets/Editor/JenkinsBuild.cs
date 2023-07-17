@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 using UnityEditor.Build.Reporting;
-using UnityEditor.PS5;
-using System.IO;
 
 // ------------------------------------------------------------------------
 // https://docs.unity3d.com/Manual/CommandLineArguments.html
@@ -50,27 +48,10 @@ public class JenkinsBuild
     }
     public static void BuildPS5()
     {
-        // Path to the PS5 player settings asset file
-        string ps5PlayerSettingsPath = "ProjectSettings/PS5Settings.asset";
-
-        // Load the PS5 player settings asset
-        PS5PlayerSettings ps5PlayerSettings = AssetDatabase.LoadAssetAtPath<PS5Settings>(ps5PlayerSettingsPath);
-
-        // Set build subtarget to Package
-        ps5PlayerSettings.buildSubtarget = PS5BuildSubtarget.Package;
-
-        // Set compression format to Kraken
-        ps5PlayerSettings.compressionFormat = PS5CompressionFormat.Kraken;
-
-        // Save the modified PS5 player settings asset
-        EditorUtility.SetDirty(ps5PlayerSettings);
-        AssetDatabase.SaveAssets();
-
         var args = FindArgs();
 
         string fullPathAndName = args.targetDir + args.appName;
         BuildProject(EnabledScenes, fullPathAndName, BuildTargetGroup.PS5, BuildTarget.PS5, BuildOptions.None);
-
     }
 
     private static Args FindArgs()
